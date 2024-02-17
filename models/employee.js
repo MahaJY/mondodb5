@@ -63,6 +63,8 @@ const employeeSchema = new Schema({
     timestamps: true
 });
 function employeeSchemaPlugin(schema, options) {
+
+    schema.index({name:1,city:-1})
     
 schema.pre('save', async function(next) {
     if (!this.isModified('password')) {
@@ -108,5 +110,7 @@ employeeSchema.plugin(employeeSchemaPlugin);
 
 const personaldetails = mongoose.model('emppersonaldetails', emppersonaldetailsschema);
 const employee = mongoose.model('Employee', employeeSchema);
+
+
 
 module.exports = { employee, personaldetails };
